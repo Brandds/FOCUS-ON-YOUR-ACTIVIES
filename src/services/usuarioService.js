@@ -1,6 +1,5 @@
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { sqlSelectUsuario, sqlUpdateUsuario } from "../components/const.js";
-import jwt from "jsonwebtoken"
 import db from '../db/db.js';
 
 const saltRounds = 10;
