@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
-import { cadatrarUsuario, deletarUsuario, updateUsuario, verificarUsuario } from "../services/UsuarioService.js";
+import { cadatrarUsuario, deletarUsuario, updateUsuario, verificarUsuario } from "../services/usuarioService.js";
 
 dotenv.config();
 
