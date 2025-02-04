@@ -1,4 +1,4 @@
-import { MSG_ERRO } from "../../components/const.js"
+import { MSG_ERRO } from "../../src/components/const.js"
 //botoes
 const btnCadastrar = document.querySelector("#bnt_cadastrar")
 
