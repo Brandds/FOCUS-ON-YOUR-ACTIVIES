@@ -1,0 +1,227 @@
+:root {
+  --color-primary: #123456;
+  --color-secondary: #FFF;
+  --azul-royal: #144480;
+  --fundo-card-timer: rgba(20, 68, 128, 0.30);
+  --lils: #B872FF;
+  --linear-botes: linear-gradient(180deg, #B872FF 0%, #144480 100%);
+  --azul-profundo: #01080E;
+  --fundo-card: rgba(255, 255, 255, 0.50);
+  --fundo-card-concludo: rgba(0, 244, 191, 0.40);
+  --main-bg-color: linear-gradient(180deg, #1875E9 0%, #041832 48.44%, #01080E 100%);
+
+}
+*{
+  box-sizing: border-box;
+  margin: 0;
+}
+body {
+  min-height: 100vh;
+  background: var(--main-bg-color);
+  display: flex;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content:start ;
+  flex-direction: column;
+  gap: 100px;
+}
+.card-login{
+  background-color: rgba(255, 255, 255, 0.10);
+  border-radius: 30px;
+  padding: 20px;
+  min-width: 600px;
+}
+
+.titulo-login{
+  font-family: "Montserrat";
+  font-weight: bold;
+}
+
+.Buttons{
+  display: flex;
+  width: 100%;
+}
+.span-bntEntrar{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.span-bntCadatrar{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+
+.input{
+  border: 1px solid transparent; 
+  outline: none;
+  transition: border 0.3s ease;
+  width: 100%;
+  font-family: "Montserrat";
+
+}
+.input:hover{
+  border: 1px solid transparent;
+}
+
+.inputs{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.inputs label{
+  font-family: "Montserrat";
+
+}
+.card-campos{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+}
+#header{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.logo{
+  font-family: "Montserrat";
+  font-weight: bold;
+}
+
+/* From Uiverse.io by Randdose */ 
+.button {
+  all: unset;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  border: mediumspringgreen solid 0.15em;
+  border-radius: 0.25em;
+  color: mediumspringgreen;
+  font-size: 1em;
+  font-weight: 600;
+  height: 30px;
+  width: 50%;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border 300ms, color 300ms;
+  user-select: none;
+}
+
+.button p {
+  z-index: 1;
+}
+
+.button:hover {
+  color: #212121;
+}
+
+.button:active {
+  border-color: teal;
+}
+
+.button::after, .button::before {
+  content: "";
+  position: absolute;
+  width: 9em;
+  aspect-ratio: 1;
+  background: mediumspringgreen;
+  opacity: 50%;
+  border-radius: 50%;
+  transition: transform 500ms, background 300ms;
+}
+
+.button::before {
+  left: 0;
+  transform: translateX(-8em);
+}
+
+.button::after {
+  right: 0;
+  transform: translateX(8em);
+}
+
+.button:hover:before {
+  transform: translateX(-1em);
+}
+
+.button:hover:after {
+  transform: translateX(1em);
+}
+
+.button:active:before,
+.button:active:after {
+  background: teal;
+}
+
+
+.btn-Cadastrar {
+  all: unset;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  border: #FF8C00 solid 0.15em;
+  border-radius: 0.25em;
+  color: #FF8C00;
+  font-size: 1em;
+  font-weight: 600;
+  height: 30px;
+  width: 50%;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border 300ms, color 300ms;
+  user-select: none;
+}
+
+.btn-Cadastrar p {
+  z-index: 1;
+}
+
+.btn-Cadastrar:hover {
+  color: #212121;
+}
+
+.btn-Cadastrar:active {
+  border-color: teal;
+}
+
+.btn-Cadastrar::after, .btn-Cadastrar::before {
+  content: "";
+  position: absolute;
+  width: 9em;
+  aspect-ratio: 1;
+  background:#FF8C00;
+  opacity: 50%;
+  border-radius: 50%;
+  transition: transform 500ms, background 300ms;
+}
+
+.btn-Cadastrar::before {
+  left: 0;
+  transform: translateX(-8em);
+}
+
+.btn-Cadastrar::after {
+  right: 0;
+  transform: translateX(8em);
+}
+
+.btn-Cadastrar:hover:before {
+  transform: translateX(-1em);
+}
+
+.btn-Cadastrar:hover:after {
+  transform: translateX(1em);
+}
+
+.btn-Cadastrar:active:before,
+.button:active:after {
+  background: teal;
+}

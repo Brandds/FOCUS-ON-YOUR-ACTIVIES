@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../../css/cadastro.css">
+
+  <!--Boostrap-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <script type="module" src="cadastro.js" defer></script>
+  <title>Cadastro</title>
+</head>
+
+<body>
+  <header id="header w-100 d-flex justify-content-center">
+    <div class="div-logo d-flex justify-content-center">
+      <p class="logo fs-1">FOCUS ON YOUR ACTIVIES</p>
+    </div>
+  </header>
+  <section id="section" class="w-100 d-flex justify-content-center">
+    <div class="card-login w-100  mb-5 p-5" style="max-width: 38rem;">
+      <div class="card-header text-light fs-1 d-flex justify-content-center">
+        <p class="titulo-Cadastro">Cadastrar</p>
+      </div>
+      <div class="card-body card-campos d-flex flex-column align-items-center gap-4 text-primary w-100">
+        <div class="inputs d-flex flex-column gap-4 w-75">
+          <span class="span-nome w-100 d-flex flex-column gap-2">
+            <p class="msg_erro_nome text-danger"></p>
+            <input id="nome" class="input" type="text" placeholder="Digite seu nome" />
+            <p class="msg_erro_sobrenome text-danger"></p>
+            <input id="sobrenome" class="input" type="text" placeholder="Digite seu sobrenome" />
+          </span>
+          <span class="span-email w-100">
+            <p class="msg_erro_email text-danger"></p>
+            <input id="email" class="input w-100" type="email" placeholder="Digite seu email" />
+          </span>
+          <span class="span-senha w-100">
+            <p class="msg_erro_senha text-danger"></p>
+            <input id="senha" class="input w-100" type="password" placeholder="Digite seu senha" />
+          </span>
+          <span class="span-confirmSenha w-100">
+            <p class="msg_erro_confirmSenha text-danger"></p>
+            <input id="confirmSenha" class="input w-100" type="password" placeholder="Confirme a senha" />
+          </span>
+          <span class="span-cpf w-100">
+            <p class="msg_erro_cpf text-danger"></p>
+            <input id="cpf" class="input w-100" type="" maxlength="14" placeholder="000.000.000-00" />
+          </span>
+          <span class="spna-check_termos">
+            <div class="form-check">
+              <p class="msg_erro_termo text-danger"></p>
+              <input class="form-check-input" type="checkbox" value="" id="termo">
+              <label class="form-check-label text-light" for="termo">
+                Eu concordo com os termos
+              </label>
+            </div>
+          </span>
+        </div>
+        <div class="campo_btn">
+          <button id="bnt_cadastrar" class="button"> CADASTRAR
+          </button>
+          <button class="btn_Login"> LOGIN
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>
