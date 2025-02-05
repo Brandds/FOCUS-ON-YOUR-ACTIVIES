@@ -94,6 +94,18 @@ body {
   font-weight: bold;
 }
 
+#mensagem_info{
+  display: none;
+}
+.msg_email{
+  display: none;
+}
+.msg_senha{
+  display: none;
+}
+
+
+
 /* From Uiverse.io by Randdose */ 
 .button {
   all: unset;

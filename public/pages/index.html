@@ -26,6 +26,9 @@
     </div>
   </header>
   <section id="section">
+    <div class="alert alert-primary" id="mensagem_info" role="alert">
+      A simple primary alert—check it out!
+    </div>
     <div class="card-login w-100  mb-3" style="max-width: 38rem;">
       <div class="card-header text-light fs-1 d-flex justify-content-center">
         <p class="titulo-login">Login</p>
@@ -34,11 +37,13 @@
         <div class="inputs">
           <span class="span-email w-100">
             <label class="fs-5 text-light" name="email">Email</label>
-            <input id="email" class="input" type="text" placeholder="Digite seu email" />
+            <input id="email" class="input" type="email" placeholder="Digite seu email" />
+            <p class="msg_email text-danger">Campo email invalido</p>
           </span>
           <span class="span-senha w-100">
             <label class="fs-5 text-light" name="senha">Senha</label>
             <input id="senha" class="input" type="password" placeholder="Digite sua senha" />
+            <p class="msg_senha text-danger">Campo senha invalido</p>
           </span>
         </div>
         <div class="Buttons">
