@@ -36,10 +36,10 @@ export async function verificar(req,res) {
   try {
     const result = await verificarUsuario(email, senha)
 
-    if(!result.success) return res.status(400).json({ message: "Usuário não encontrado!" });
+    if(!result.success) return res.status(400).json({success:false, message: "Usuário não encontrado!" });
 
     const token = jwt.sign({ nome: email }, process.env.JWT_SECRET, { expiresIn: "1h" });
-    res.json({ token });
+    res.json({ success:true, message: token });
 
   } catch (error) {
     console.error(error.message)
