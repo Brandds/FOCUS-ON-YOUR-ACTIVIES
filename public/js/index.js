@@ -2,6 +2,7 @@ import { login, salvarToken, salvarUsuarioRedux } from "./services/usuarioServic
 
 //Botoes
 const btn_entrar = document.getElementById("btn_entrar")
+const btn_cadastrar = document.querySelector(".btn-Cadastrar")
 
 //Inputs
 const input_email = document.getElementById("email")
@@ -13,6 +14,11 @@ btn_entrar.addEventListener("click", () => {
 
   if(email && senha) verificarUsuario(input_email.value,input_senha.value)
 });
+
+btn_cadastrar.addEventListener("click", () => {
+  window.location.href = "cadastro.html";
+
+})
 
 async function verificarUsuario(email, senha) {
   const dadosUsuario = await login(email,senha); // Aguarda a resposta da API

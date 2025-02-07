@@ -1,6 +1,7 @@
 import { MSG_ERRO } from "../../src/components/const.js"
 //botoes
 const btnCadastrar = document.querySelector("#bnt_cadastrar")
+const 
 
 
 //valores dos inputs
