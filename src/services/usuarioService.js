@@ -26,12 +26,22 @@ export async function cadatrarUsuario(usuario) {
 }
 
 export async function verificarUsuario(email, senha){
-  const senhaUser = await getSenha(email)
-
-  if(senhaUser != null){
+  const user = await getSenha(email)
+  
+  if(user != null){
     try {
-      const senhaUsuarioValida = await verificarSenha(senha, senhaUser)
-      return  senhaUsuarioValida ? ({success: true, message: "Usuario encontrado"}) : ({success: false , message: "Senha do usuario incorreta"});
+      const senhaUsuarioValida = await verificarSenha(senha, user.senha)
+      if(senhaUsuarioValida){
+        const usuarioVo = {
+          id: user.id,
+          nome:user.nome,
+          email:user.email,
+          cpf:user.cpf,
+          imagem:user.imagem
+        }
+        return ({success: true, message: "Usuario encontrado", usuario: usuarioVo})
+      }
+      return ({success: false , message: "Senha do usuario incorreta"});
     } catch (error) {
       return { success: false, message: "Erro ao buscar usuário.", error: error.message };
     }
@@ -59,7 +69,7 @@ async function gerarHashSenha(senha){
 async function getSenha(email){
   try {
     const [rows] = await db.query("SELECT * FROM usuario u WHERE u.email = ?", [email])
-    return rows.length > 0 ? rows[0].senha : null
+    return rows.length > 0 ? rows[0] : null
   } catch (error) {
     return null;
   }

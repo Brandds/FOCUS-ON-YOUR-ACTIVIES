@@ -510,3 +510,28 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 0.8;
     cursor: not-allowed;
 }
+.nav_bar{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    text-align: center;
+}
+
+.nav_bar .text_usuario{
+    font-size: 40px;
+    color: #fff;
+    font-family: "Montserrat";
+    font-weight: bold;
+    color: black;
+    display: flex;
+    align-items: center;
+    
+}
+.logo{
+    font-family: "Montserrat";
+    font-weight: bold;
+  }
+  .logo {
+    color: black;
+    font-size: 40px;
+  }

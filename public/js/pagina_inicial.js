@@ -1,10 +1,13 @@
 // encontrar o botão adicionar tarefa
 
+import store from "../redux/store.js"
+
 const btnAdicionarTarefa = document.querySelector('.app__button--add-task')
 const formAdicionarTarefa = document.querySelector('.app__form-add-task')
 const textarea = document.querySelector('.app__form-textarea')
 const ulTarefas = document.querySelector('.app__section-task-list')
 const paragrafoDescricaoTarefa = document.querySelector('.app__section-active-task-description')
+const usuario_text = document.querySelector(".text_usuario").innerHTML = `${store.getState().usuarioAtivo.nome}`
 
 const tarefas = JSON.parse(localStorage.getItem('tarefas')) || []
 let tarefaSelecionada = null
@@ -13,6 +16,12 @@ let liTarefaSelecionada = null
 function atualizarTarefas () {
     localStorage.setItem('tarefas', JSON.stringify(tarefas))
 }
+
+
+
+console.log("stateredux",store.getState().usuarioAtivo.nome);
+
+
 
 function criarElementoTarefa(tarefa) {
     const li = document.createElement('li')

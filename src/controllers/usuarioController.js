@@ -37,9 +37,9 @@ export async function verificar(req,res) {
     const result = await verificarUsuario(email, senha)
 
     if(!result.success) return res.status(400).json({success:false, message: "Usuário não encontrado!" });
-
+    console.log(result)
     const token = jwt.sign({ nome: email }, process.env.JWT_SECRET, { expiresIn: "1h" });
-    res.json({ success:true, message: token });
+    res.json({ success:true, message: token, usuario: result.usuario });
 
   } catch (error) {
     console.error(error.message)

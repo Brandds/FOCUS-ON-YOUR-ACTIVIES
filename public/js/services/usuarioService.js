@@ -1,7 +1,9 @@
+import store from "../../redux/store.js";
+
+
 export async function login(email, senha) {
-  let response400;
   try {
-    const response = await fetch("https://focus-on-your-activies.onrender.com/usuario/verificar", {
+    const response = await fetch("http://localhost:3000/usuario/verificar", {
       method: "POST",
       headers: {
           "Content-Type": "application/json"
@@ -25,3 +27,17 @@ export async function login(email, senha) {
     return ({success: false})
   }
 }
+
+export function salvarToken(token){
+  sessionStorage.setItem("token", token)
+}
+
+export function obterToken(){
+  return sessionStorage.getItem("token")
+}
+
+export function salvarUsuarioRedux(usuario){
+  console.log("Usuario", usuario)
+  store.dispatch({ type: "SET_USUARIO", payload: usuario });
+}
+

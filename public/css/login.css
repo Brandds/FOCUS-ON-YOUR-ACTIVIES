@@ -96,6 +96,11 @@ body {
 
 #mensagem_info{
   display: none;
+  justify-content: center;
+}
+#mensagem_info_error{
+  display: none;
+  justify-content: center;
 }
 .msg_email{
   display: none;

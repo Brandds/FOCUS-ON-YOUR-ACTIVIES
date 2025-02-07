@@ -1,4 +1,4 @@
-import { login } from "./services/usuarioService.js";
+import { login, salvarToken, salvarUsuarioRedux } from "./services/usuarioService.js";
 
 //Botoes
 const btn_entrar = document.getElementById("btn_entrar")
@@ -16,8 +16,7 @@ btn_entrar.addEventListener("click", () => {
 
 async function verificarUsuario(email, senha) {
   const dadosUsuario = await login(email,senha); // Aguarda a resposta da API
-
-  dadosUsuario.success ? dadosCorretos() : dadosIncorretos();
+  dadosUsuario.success ? dadosCorretos(dadosUsuario.message,dadosUsuario.usuario) : dadosIncorretos();
   
 }
 
@@ -56,12 +55,23 @@ function modificarCampoSenha(situacao){
   }
 }
 
-function dadosCorretos(){
-  alert("Dados ok")
-  window.location.href = "pagina_inicial.html";
+function dadosCorretos(token,usuario){
+  document.getElementById('mensagem_info').style.display = "flex"
+  salvarToken(token)  
+  salvarUsuarioRedux(usuario)
+  setTimeout(() => {
+     window.location.href = "pagina_inicial.html";
+     document.getElementById('mensagem_info').style.display = "none"
+  }, 4000);
 
 }
 
 function dadosIncorretos(){
-  alert("Dados not")
+  const msg_error = document.getElementById("mensagem_info_error")
+  msg_error.style.display = "flex"
+  msg_error.innerText = "Crendências não encontrada"
+  setTimeout(() => {
+    msg_error.style.display = "none"
+    msg_error.innerText = "Crendências não encontrada"
+  }, 4000);
 }
