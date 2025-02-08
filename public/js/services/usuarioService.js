@@ -53,6 +53,7 @@ export async function cadastro(usuario) {
     
   } catch (error) {
     console.error("Erro:", error);
+    
     return ({success: false})
   }
 }

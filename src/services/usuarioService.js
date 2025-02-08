@@ -15,14 +15,14 @@ export async function cadatrarUsuario(usuario) {
       const [rows] = await db.query("insert into usuario (nome, email,cpf,senha) values (?,?,?,?)",[usuario.nome, usuario.email, usuario.cpf, senhaHash]);
 
       return rows.affectedRows > 0
-      ? { success: true, message: "Usuario  criado com sucesso" }
+      ? { success: true, message: "Usuario  criado com sucesso"}
       : { success: false, message: "Usuario não foi registrada" };
     } catch (error) {
       return { success: false, message: "Erro ao cadastrar usuário.", error: error.message };
     }
   }
 
-  return { success: false, message: "Email já cadastrado!" };
+  return { success: true, message: "Email já cadastrado!",situacao: true };
 }
 
 export async function verificarUsuario(email, senha){
