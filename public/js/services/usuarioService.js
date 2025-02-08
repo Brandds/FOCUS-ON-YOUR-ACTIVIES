@@ -49,7 +49,7 @@ export async function cadastro(usuario) {
     const data = await response.json();
     console.log(data);
     
-    return data  
+    return data
     
   } catch (error) {
     console.error("Erro:", error);

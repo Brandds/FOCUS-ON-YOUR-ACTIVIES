@@ -20,9 +20,7 @@ export async function cadastrar(req, res) {
     console.log(result);
     
     if(!result.success) return res.status(400).json({success:false, message: `${result.message}` });
-    
-    if(result.success && result?.situacao) return res.status(200).json(result)
-    
+        
     const token = jwt.sign({ nome: usuario.email }, process.env.JWT_SECRET, { expiresIn: "1h" });
     res.json({success:true, message: token});
 

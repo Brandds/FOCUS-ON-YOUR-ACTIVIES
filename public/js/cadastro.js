@@ -96,8 +96,8 @@ async function cadastrar() {
   try {
     const result = await cadastro(usuario)
     console.log("result",result);
-    
-    result.success ? sucessAoCadastrarUsuario() : errorAoCadastrarUsuario()  
+    const mensagem = result?.situacao ? result.message : null
+    result.success ? sucessAoCadastrarUsuario(mensagem) : errorAoCadastrarUsuario()  
   } catch (error) {
     errorAoCadastrarUsuario()
   }finally{
@@ -106,10 +106,11 @@ async function cadastrar() {
   
 }
 
-function sucessAoCadastrarUsuario(){
-  mensagem_modal.innerHTML = `${modal[0].mensagem}`
-  corpo_modal.style.backgroundColor = `${modal[0].backGround}`
-  bnt_modal.innerHTML = `${modal[0].button}`
+function sucessAoCadastrarUsuario(mensagem){
+  console.log(mensagem)
+  mensagem_modal.innerHTML =  mensagem != null ? `${mensagem}` : `${modal[0].mensagem}` 
+  corpo_modal.style.backgroundColor = mensagem != null ? "#000080	" :  `${modal[0].backGround}`
+  bnt_modal.innerHTML =  mensagem != null ? "Fechar" : `${modal[0].button}` 
   bnt_modal.addEventListener("click",modal[0].function)
 
   let myModal = new bootstrap.Modal(document.getElementById("myModal"));
