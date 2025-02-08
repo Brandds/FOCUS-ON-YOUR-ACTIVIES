@@ -12,11 +12,32 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
   <script type="module" src="../js/cadastro.js" defer></script>
   <title>Cadastro</title>
 </head>
 
 <body>
+  <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content " id="corpo_modal">
+        <div class=" modal-header">
+          <h5 class="modal-title text-light">Mensagem</h5>
+        </div>
+        <div class="modal-body d-flex justify-content-center">
+          <p class="mensagem_modal fs-4">Cadastro feito com sucesso.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" id="fechar_modal" data-bs-dismiss="modal">Ir para o login</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <header id="header w-100 d-flex justify-content-center">
     <div class="div-logo d-flex justify-content-center">
       <p class="logo fs-1">FOCUS ON YOUR ACTIVIES</p>
@@ -49,7 +70,7 @@
           </span>
           <span class="span-cpf w-100">
             <p class="msg_erro_cpf text-danger"></p>
-            <input id="cpf" class="input w-100" type="" maxlength="14" placeholder="000.000.000-00" />
+            <input id="cpf" class="input w-100" type="" placeholder="000.000.000-00" />
           </span>
           <span class="spna-check_termos">
             <div class="form-check">

@@ -1,7 +1,7 @@
 import { MSG_ERRO } from "../../src/components/const.js"
+import { cadastro } from "./services/usuarioService.js"
 //botoes
 const btnCadastrar = document.querySelector("#bnt_cadastrar")
-const 
 
 
 //valores dos inputs
@@ -12,6 +12,15 @@ let senha = document.getElementById("senha")
 let confirmSenhaenha = document.getElementById("confirmSenha")
 let termo = document.getElementById("termo")
 let cpf = document.getElementById("cpf")
+
+const modal = [
+  {mensagem:"Cadastro feito com sucesso.",button:"Ir para o login", backGround:"green", function:irTelaLogin},
+  {mensagem:"Erro  ao fazer cadastro.",button:"Fechar",backGround:"red", function:recarregarPaginaCadastro},
+]
+const mensagem_modal = document.querySelector(".mensagem_modal")
+const bnt_modal = document.getElementById("fechar_modal")
+const corpo_modal = document.getElementById("corpo_modal")
+
 
 
 btnCadastrar.addEventListener("click", () =>{
@@ -37,7 +46,6 @@ document.getElementById("cpf").addEventListener("input", function (e) {
 
 document.getElementById("termo").addEventListener("change", function () {
   this.value = this.checked ? "true" : "false";
-  console.log("Valor atual:", this.value);
 });
 
 
@@ -47,13 +55,12 @@ function verificarDadosCadastro() {
       { elemento: sobrenome, atributo: "sobrenome", mensagem: MSG_ERRO[1] },
       { elemento: email, atributo: "email", mensagem: MSG_ERRO[2] },
       { elemento: senha, atributo: "senha", mensagem: MSG_ERRO[3] },
-      { elemento: confirmSenhaenha, atributo: "confirmSenha", mensagem: MSG_ERRO[4] },
+      { elemento: confirmSenhaenha, atributo: "confirmSenha", mensagem: MSG_ERRO[4] , validar: (v) => v === senha.value},
       { elemento: termo, atributo: "termo", mensagem: MSG_ERRO[5], validar: (v) => v !== "" && v !== "false" },
-      { elemento: cpf, atributo: "cpf", mensagem: MSG_ERRO[6] }
+      { elemento: cpf, atributo: "cpf", mensagem: MSG_ERRO[6], validar: (v) => v.length == 14}
   ];
 
-  let todosValidos = true;
-
+  let todosValidos = true
   campos.forEach(({ elemento, atributo, mensagem, validar = (v) => v !== "" }) => {
       if (validar(elemento.value)) {
           sucesso(elemento, atributo);
@@ -76,6 +83,57 @@ function sucesso(elemento, atributo) {
   document.querySelector(`.msg_erro_${atributo}`).textContent = "";
 }
 
-function cadastrar() {
-  alert("Todos os dados estão corretos!");
+async function cadastrar() {
+  const usuario = {
+    nome:nome.value,
+    sobrenome:sobrenome.value,
+    email:email.value,
+    cpf:cpf.value.replace(/\D/g, ""),
+    senha:senha.value
+  }
+  btnCadastrar.disabled = true
+
+  try {
+    const result = await cadastro(usuario)
+    console.log("result",result);
+    
+    result.success ? sucessAoCadastrarUsuario() : errorAoCadastrarUsuario()  
+  } catch (error) {
+    errorAoCadastrarUsuario()
+  }finally{
+    btnCadastrar.disalbed = false
+  }
+  
 }
+
+function sucessAoCadastrarUsuario(){
+  mensagem_modal.innerHTML = `${modal[0].mensagem}`
+  corpo_modal.style.backgroundColor = `${modal[0].backGround}`
+  bnt_modal.innerHTML = `${modal[0].button}`
+  bnt_modal.addEventListener("click",modal[0].function)
+
+  let myModal = new bootstrap.Modal(document.getElementById("myModal"));
+  myModal.show();
+}
+
+function errorAoCadastrarUsuario(){
+  console.log("testes");
+  
+  mensagem_modal.innerHTML = `${modal[1].mensagem}`
+  mensagem_modal.style.color = "white"
+  corpo_modal.style.backgroundColor = `${modal[1].backGround}`
+  bnt_modal.innerHTML = `${modal[1].button}`
+  bnt_modal.addEventListener("click",modal[1].function)
+  let myModal = new bootstrap.Modal(document.getElementById("myModal"));
+  myModal.show();
+}
+
+function irTelaLogin(){
+  window.location.href = "index.html";
+
+}
+
+function recarregarPaginaCadastro(){
+  window.location.href = "cadastro.html";
+}
+

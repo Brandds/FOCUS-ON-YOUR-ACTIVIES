@@ -3,7 +3,7 @@ import store from "../../redux/store.js";
 
 export async function login(email, senha) {
   try {
-    const response = await fetch("http://localhost:3000/usuario/verificar", {
+    const response = await fetch("https://focus-on-your-activies.onrender.comocalhost:3000/usuario/verificar", {
       method: "POST",
       headers: {
           "Content-Type": "application/json"
@@ -17,11 +17,40 @@ export async function login(email, senha) {
     if (!response.ok) {
       throw new Error(`Erro na requisição: ${response.status}`);
     }
-    console.log(email);
-    console.log(senha);
     
     const data = await response.json();
     return data  
+  } catch (error) {
+    console.error("Erro:", error);
+    return ({success: false})
+  }
+}
+
+export async function cadastro(usuario) {
+  console.log("Usuario", usuario);
+  
+  try {
+    const response = await fetch("https://focus-on-your-activies.onrender.com/usuario/cadastrar", {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "nome":`${usuario.nome}  ${usuario.sobrenome}`,
+        "email":`${usuario.email}`,
+        "cpf":`${usuario.cpf}`,
+        "senha":`${usuario.senha}`,
+      })
+    });
+    if (!response.ok) {
+      throw new Error(`Erro na requisição: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    console.log(data);
+    
+    return data  
+    
   } catch (error) {
     console.error("Erro:", error);
     return ({success: false})
