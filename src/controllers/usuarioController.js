@@ -19,7 +19,7 @@ export async function cadastrar(req, res) {
     const result = await cadatrarUsuario(usuario)
     console.log(result);
     
-    if(!result.success) return res.status(400).json({success:false, message: "Usuário não encontrado!" });
+    if(!result.success) return res.status(400).json({success:false, message: `${result.message}` });
     
     const token = jwt.sign({ nome: usuario.email }, process.env.JWT_SECRET, { expiresIn: "1h" });
     res.json({success:true, message: token});
