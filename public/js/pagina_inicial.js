@@ -1,6 +1,7 @@
 // encontrar o botão adicionar tarefa
 
 import store from "../redux/store.js"
+import { getAllAtividadeUser } from "./services/atividadeService.js"
 
 const btnAdicionarTarefa = document.querySelector('.app__button--add-task')
 const formAdicionarTarefa = document.querySelector('.app__form-add-task')
@@ -9,23 +10,24 @@ const ulTarefas = document.querySelector('.app__section-task-list')
 const paragrafoDescricaoTarefa = document.querySelector('.app__section-active-task-description')
 const usuario_text = document.querySelector(".text_usuario").innerHTML = `${store.getState().usuarioAtivo.nome}`
 
-const tarefas = JSON.parse(localStorage.getItem('tarefas')) || []
+// const tarefas = JSON.parse(localStorage.getItem('tarefas')) || []
 let tarefaSelecionada = null
 let liTarefaSelecionada = null
 
 function atualizarTarefas () {
     localStorage.setItem('tarefas', JSON.stringify(tarefas))
 }
-
-
-
-console.log("stateredux",store.getState().usuarioAtivo.nome);
+let tarefa = await getAllAtividadeUser(1)
+const tarefas = tarefa.atividades
+console.log("getAllAtividadeUser", tarefas)
 
 
 
 function criarElementoTarefa(tarefa) {
     const li = document.createElement('li')
     li.classList.add('app__section-task-list-item')
+    li.setAttribute("id", `atividade-${tarefa.id}`);
+
 
     const svg = document.createElement('svg')
     svg.innerHTML = `
@@ -99,7 +101,6 @@ formAdicionarTarefa.addEventListener('submit', (evento) => {
     textarea.value = ''
     formAdicionarTarefa.classList.add('hidden')
 })
-
 tarefas.forEach(tarefa => {
     const elementoTarefa = criarElementoTarefa(tarefa)
     ulTarefas.append(elementoTarefa)

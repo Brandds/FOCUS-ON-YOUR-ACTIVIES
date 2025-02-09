@@ -3,7 +3,7 @@ import store from "../../redux/store.js";
 
 export async function login(email, senha) {
   try {
-    const response = await fetch("https://focus-on-your-activies.onrender.comocalhost:3000/usuario/verificar", {
+    const response = await fetch("https://focus-on-your-activies.onrender.com/usuario/verificar", {
       method: "POST",
       headers: {
           "Content-Type": "application/json"
