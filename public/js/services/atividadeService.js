@@ -60,3 +60,18 @@ export async function updateAtividade(descricao, idAtividade){
     
   }
 }
+
+export async function deletarAtividade(id) {
+  try {
+    const response = await fetch(`https://focus-on-your-activies.onrender.com/atividade/delete/${id}`,{
+      method:"DELETE",
+      headers:{
+        "Content-Type":"application/json"
+      }
+    })
+    const data = await response.json()
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}

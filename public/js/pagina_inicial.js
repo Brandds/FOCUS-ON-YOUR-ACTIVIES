@@ -1,7 +1,7 @@
 // encontrar o botão adicionar tarefa
 
 import store from "../redux/store.js"
-import { addAtividadeUsuario, getAllAtividadeUser, updateAtividade } from "./services/atividadeService.js"
+import { addAtividadeUsuario, deletarAtividade, getAllAtividadeUser, updateAtividade } from "./services/atividadeService.js"
 
 const btnAdicionarTarefa = document.querySelector('.app__button--add-task')
 const formAdicionarTarefa = document.querySelector('.app__form-add-task')
@@ -70,6 +70,19 @@ function criarElementoTarefa(tarefa) {
         }
     }
 
+    const botao_excluir = document.createElement("button")
+    botao_excluir.classList.add("app_button-edit")
+    botao_excluir.setAttribute("id", `excluir_atividade-${tarefa.id}`);
+
+    const imagemBotaoExcluir = document.createElement("img")
+    imagemBotaoExcluir.setAttribute("src","/imagens/excluir.png")
+    botao_excluir.append(imagemBotaoExcluir)
+
+    botao_excluir.onclick = async () =>{
+        const result = await deletarAtividade(tarefa.id)
+        alert(result?.message)
+    }
+
     const imagemBotao = document.createElement('img')
     imagemBotao.setAttribute('src', '/imagens/edit.png')
     botao.append(imagemBotao)
@@ -77,6 +90,7 @@ function criarElementoTarefa(tarefa) {
     li.append(svg)
     li.append(paragrafo)
     li.append(botao)
+    li.append(botao_excluir)
 
     li.onclick = () => {
         document.querySelectorAll('.app__section-task-list-item-active')
