@@ -1,7 +1,7 @@
 // encontrar o botão adicionar tarefa
 
 import store from "../redux/store.js"
-import { getAllAtividadeUser } from "./services/atividadeService.js"
+import { addAtividadeUsuario, getAllAtividadeUser, updateAtividade } from "./services/atividadeService.js"
 
 const btnAdicionarTarefa = document.querySelector('.app__button--add-task')
 const formAdicionarTarefa = document.querySelector('.app__form-add-task')
@@ -10,23 +10,34 @@ const ulTarefas = document.querySelector('.app__section-task-list')
 const paragrafoDescricaoTarefa = document.querySelector('.app__section-active-task-description')
 const usuario_text = document.querySelector(".text_usuario").innerHTML = `${store.getState().usuarioAtivo.nome}`
 
-// const tarefas = JSON.parse(localStorage.getItem('tarefas')) || []
 let tarefaSelecionada = null
 let liTarefaSelecionada = null
 
-function atualizarTarefas () {
-    localStorage.setItem('tarefas', JSON.stringify(tarefas))
-}
-let tarefa = await getAllAtividadeUser(1)
-const tarefas = tarefa.atividades
+
+let tarefa = await getAllAtividadeUser(store.getState().usuarioAtivo.id)
+let tarefas = tarefa.atividades
 console.log("getAllAtividadeUser", tarefas)
 
+async function atualizarTarefas () {
+    tarefa =  await getAllAtividadeUser(store.getState().usuarioAtivo.id)
+    tarefas = tarefa.atividades
+    removerElementosAtividade()
+    tarefas.forEach(tarefa => {
+        const elementoTarefa = criarElementoTarefa(tarefa)
+        ulTarefas.append(elementoTarefa)
+    });
+}
 
+function removerElementosAtividade(){
+    document.querySelectorAll(".app__section-task-list-item").forEach(elemento => {
+        elemento.remove();
+    });
+    
+}
 
 function criarElementoTarefa(tarefa) {
     const li = document.createElement('li')
     li.classList.add('app__section-task-list-item')
-    li.setAttribute("id", `atividade-${tarefa.id}`);
 
 
     const svg = document.createElement('svg')
@@ -43,15 +54,18 @@ function criarElementoTarefa(tarefa) {
     paragrafo.classList.add('app__section-task-list-item-description')
 
     const botao = document.createElement('button')
-    botao.classList.add('app_button-edit')
+    botao.classList.add(`app_button-edit`)
+    botao.setAttribute("id", `atividade-${tarefa.id}`);
 
-    botao.onclick = () => {
+
+    botao.onclick = async  () => {
         // debugger
         const novaDescricao = prompt("Qual é o novo nome da tarefa?")
         // console.log('Nova descrição da tarefa: ', novaDescricao)
         if (novaDescricao) {            
-            paragrafo.textContent = novaDescricao
-            tarefa.descricao = novaDescricao
+            const id =   botao.id.split("-")[1]
+            const result = await updateAtividade(novaDescricao, id)
+            alert(result.message)
             atualizarTarefas()
         }
     }
@@ -89,18 +103,18 @@ btnAdicionarTarefa.addEventListener('click', () => {
     formAdicionarTarefa.classList.toggle('hidden')
 })
 
-formAdicionarTarefa.addEventListener('submit', (evento) => {
+formAdicionarTarefa.addEventListener('submit', async (evento) => {
     evento.preventDefault();
     const tarefa = {
         descricao: textarea.value
     }
-    tarefas.push(tarefa)
-    const elementoTarefa = criarElementoTarefa(tarefa)
-    ulTarefas.append(elementoTarefa)
+   const result =  await addAtividadeUsuario(tarefa.descricao, store.getState().usuarioAtivo.id)
+   alert(result.message)
     atualizarTarefas()
     textarea.value = ''
     formAdicionarTarefa.classList.add('hidden')
 })
+
 tarefas.forEach(tarefa => {
     const elementoTarefa = criarElementoTarefa(tarefa)
     ulTarefas.append(elementoTarefa)
