@@ -9,7 +9,6 @@
   --fundo-card: rgba(255, 255, 255, 0.50);
   --fundo-card-concludo: rgba(0, 244, 191, 0.40);
   --main-bg-color: linear-gradient(180deg, #1875E9 0%, #041832 48.44%, #01080E 100%);
-
 }
 *{
   box-sizing: border-box;
